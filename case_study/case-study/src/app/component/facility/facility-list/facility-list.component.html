@@ -1,277 +1,111 @@
-<app-hearder></app-hearder>
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8">
-  <title>Danh sách dịch vụ</title>
+<h1 class="text-center">LIST FACILITY</h1>
+<a class="btn bg-primary" [routerLink]="['/createFacility']" routerLinkActive="router-link-active">thêm mới</a>
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
-
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      background-image: url("https://resizing.flixster.com/XHvcBxuKMfWLooKZHqPrCusyz9Q=/ems.cHJkLWVtcy1hc3NldHMvbW92aWVzL2EyZDU1MDQyLWQ0MTMtNGJmOC04Y2QxLTE3ODFhYmJiMGM0Ny53ZWJw");
-    }
-  </style>
-
-</head>
-<body>
-
-<div class="p-3">
-  <h2 class="text-center fw-bold text-light my-3">DANH SÁCH DỊCH VỤ</h2>
-
-
-  <nav class="navbar navbar-expand-lg py-0 my-0">
-    <div class="container-fluid">
-      <a th:href="@{/facility/create}">
-        <button class="btn btn-primary btn-outline-secondary btn-sm">
-          <span class="fa-solid fa-house-medical text-light h5 my-auto me-1"></span>
-          <span class="text-light"> Thêm mới dịch vụ</span>
-        </button>
-      </a>
-
-      <form class="d-flex my-2" role="search" th:action="@{/facility}">
-        <input class="form-control me-2" type="text" placeholder="Nhập tên dịch vụ.." aria-label="Search"
-               name="nameSearch">
-
-        <select class="form-control me-2" name="facilityType">
-          <option value="">All Type</option>
-          <option th:each="type : ${facilityTypeList}" th:value="${type.facilityTypeId}"
-                  th:text="${type.facilityTypeName}"></option>
-        </select>
-
-        <button class="btn btn-light btn-outline-primary" type="submit" name="action" value="search">
-          <i class="fa-solid fa-magnifying-glass"></i></button>
-      </form>
+<div class="card-group">
+  <div class="card" style="margin: 10px">
+    <img
+      src="https://cf.bstatic.com/xdata/images/hotel/max1280x900/314234927.jpg?k=21291418450e2c1802e02864677b7cf811321797b1d36aaa55e1019133f82698&o=&hp=1"
+      class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">House</h5>
+      <p class="card-text">Acreage: 500m2</p>
     </div>
-  </nav>
-
-  <table bgcolor="#5f9ea0" class="table table-light table-striped table-bordered">
-    <thead>
-    <tr class="table-dark text-light">
-      <th class="text-center"><i class="fa-sharp fa-solid fa-bolt"></i></th>
-      <th>Name</th>
-      <th>Area</th>
-      <th>Number Of Floors</th>
-      <th>Max People</th>
-      <th>Cost</th>
-      <th>Rent Type Name</th>
-      <th>Status</th>
-      <th>Edit</th>
-      <th>Delete</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let temp of facilityList;index as i">
-      <td class="table-primary">{{i + 1}}</td>
-      <td class="table-success">{{temp.name}}</td>
-      <td class="table-secondary">{{temp.area}}</td>
-      <td class="table-warning">{{temp.numberOfFloors}}</td>
-      <td class="table-info">{{temp.maxPeople}}</td>
-      <td class="table-dark">{{temp.cost}}</td>
-      <td class="table-secondary">{{temp.rentType.name}}</td>
-      <td class="table-success">{{temp.status}}</td>
-      <td>
-        <button type="button" class="btn btn-outline-success">Edit</button>
-      </td>
-      <td>
-        <button type="button" class="btn btn-outline-success">Delete</button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-  <nav aria-label="..." class="justify-content-center d-flex">
-    <ul class="pagination">
-      <li class="page-item">
-        <a class="page-link" th:href="@{'/facility'(page=${facilityList.number - 1}, nameSearch=${nameSearch})}"
-           th:if="${facilityList.hasPrevious()}">&laquo;</a>
-      </li>
-      <li class="page-item disabled" th:unless="${facilityList.hasPrevious()}">
-        <a class="page-link">&laquo;</a>
-      </li>
-
-      <li class="page-item"><a class="page-link" th:href="@{'/facility'(page=${facilityList.number - 1},
-            nameSearch=${nameSearch})}" th:if="${facilityList.hasPrevious()}" th:text="${facilityList.number}"></a>
-      </li>
-
-      <li class="page-item active">
-        <a class="page-link" th:href="@{'/facility'(page=${facilityList.number}, nameSearch=${nameSearch})}"
-           th:text="${facilityList.number + 1}"><span class="sr-only">(trang hiện tại)</span></a>
-      </li>
-
-      <li class="page-item"><a class="page-link" th:href="@{'/facility'(page=${facilityList.number + 1},
-            nameSearch=${nameSearch})}" th:if="${facilityList.hasNext()}" th:text="${facilityList.number + 2}"></a>
-      </li>
-
-      <li class="page-item">
-        <a class="page-link" th:href="@{'/facility'(page=${facilityList.number + 1}, nameSearch=${nameSearch})}"
-           th:if="${facilityList.hasNext()}">&raquo;</a>
-      </li>
-      <li class="page-item disabled" th:unless="${facilityList.hasNext()}">
-        <a class="page-link">&raquo;</a>
-      </li>
-    </ul>
-  </nav>
-
-  <div class="modal fade" id="deleteFacility" tabindex="-1" aria-labelledby="exampleModalLabel1"
-       aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content modalCSS">
-        <div class="modal-header">
-          <h4 class="modal-title" id="exampleModalLabel1">Bạn có chắc chắn muốn xóa?</h4>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-
-        <form th:action="@{/facility/delete}">
-          <div class="modal-body">
-            <span class="h6">Dịch vụ:</span><strong id="nameDelete" class="text-danger ps-2"></strong>
-            <input type="hidden" name="idDelete" id="idDelete" readonly/>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-            <button type="submit" class="btn btn-danger" value="delete">Xóa</button>
-          </div>
-        </form>
-      </div>
+    <div class="text-center">
+      <a class="btn bg-primary" [routerLink]="['/editFacility']" routerLinkActive="router-link-active">Edit</a>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete
+      </button>
     </div>
   </div>
 
-  <div class="modal fade" id="viewFacility" tabindex="-1" aria-labelledby="exampleModalLabel1"
-       aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content modalCSS">
-        <div class="modal-header">
-          <h4 class="modal-title text-center" id="exampleModalLabel2">THÔNG TIN DỊCH VỤ</h4>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-
-        <div class="modal-body">
-          <table>
-            <tr>
-              <td class="h6 pe-3">Tên dịch vụ:</td>
-              <td id="name" class="text-primary h6"></td>
-            </tr>
-
-            <tr>
-              <td class="h6 pe-3">Loại dịch vụ:</td>
-              <td id="facilityType" class="text-primary h6"></td>
-            </tr>
-
-            <tr>
-              <td class="h6 pe-3">Diện tích:</td>
-              <td id="area" class="text-primary"></td>
-            </tr>
-
-            <tr>
-              <td class="h6 pe-3">Chi phí thuê:</td>
-              <td id="cost" class="text-primary"></td>
-            </tr>
-
-            <tr>
-              <td class="h6 pe-3">Số người tối đa:</td>
-              <td id="maxPeople" class="text-primary"></td>
-            </tr>
-
-            <tr>
-              <td class="h6 pe-3">Tiêu chuẩn phòng:</td>
-              <td id="standardRoom" class="text-primary"></td>
-            </tr>
-
-            <tr>
-              <td class="h6 pe-3">Mô tả tiện nghi khác:</td>
-              <td id="description" class="text-primary"></td>
-            </tr>
-
-            <tr>
-              <td class="h6 pe-3">Diện tích hồ bơi:</td>
-              <td id="poolArea" class="text-primary"></td>
-            </tr>
-
-            <tr>
-              <td class="h6 pe-3">Số tầng:</td>
-              <td id="numberOfFloors" class="text-primary"></td>
-            </tr>
-
-            <tr>
-              <td class="h6 pe-3">Dịch vụ miễn phí đi kèm:</td>
-              <td id="facilityFree" class="text-primary"></td>
-            </tr>
-
-            <tr>
-              <td class="h6 pe-3">Kiểu thuê:</td>
-              <td id="rentType" class="text-primary"></td>
-            </tr>
-          </table>
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-        </div>
+  <div class="card" style="margin: 10px">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnkybTLUpcmqYti7Vk5Hs2F5gXb6J8hKC6Ig&usqp=CAU"
+         class="card-img-top"
+         alt="...">
+    <div class="card-body">
+      <div class="card-body">
+        <h5 class="card-title">Room</h5>
+        <p class="card-text">Acreage: 100m2</p>
       </div>
+    </div>
+    <div class="text-center">
+      <a class="btn bg-primary" [routerLink]="['/editFacility']" routerLinkActive="router-link-active">Edit</a>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete
+      </button>
     </div>
   </div>
 
-  <script>
-    function deleteFacility(id, name) {
-      document.getElementById("idDelete").value = id;
-      document.getElementById("nameDelete").innerText = name;
-      debugger
-    }
-
-    function viewFacility(name, area, cost, maxPeople, standardRoom, description, poolArea, numberOfFloors,
-                          facilityFree, rentType, facilityType) {
-      // console.log(document.getElementById("name"))
-
-      document.getElementById("name").innerText = name;
-      document.getElementById("area").innerHTML = area + " (m<sup>2</sup>)";
-      document.getElementById("cost").innerText = "₫ " + cost;
-      document.getElementById("maxPeople").innerText = maxPeople;
-
-      if (standardRoom === "") {
-        document.getElementById("standardRoom").innerText = "-";
-      } else {
-        document.getElementById("standardRoom").innerText = standardRoom;
-      }
-
-      if (description === "") {
-        document.getElementById("description").innerText = "-";
-      } else {
-        document.getElementById("description").innerText = description;
-      }
-
-      if (poolArea === "") {
-        document.getElementById("poolArea").innerHTML = "-";
-      } else {
-        document.getElementById("poolArea").innerHTML = poolArea + " (m<sup>2</sup>)";
-      }
-
-      if (numberOfFloors === "") {
-        document.getElementById("numberOfFloors").innerText = "-";
-      } else {
-        document.getElementById("numberOfFloors").innerText = numberOfFloors;
-      }
-
-      if (facilityFree === "") {
-        document.getElementById("facilityFree").innerText = "-";
-      } else {
-        document.getElementById("facilityFree").innerText = facilityFree;
-      }
-
-      document.getElementById("rentType").innerText = rentType;
-      document.getElementById("facilityType").innerText = facilityType;
-      debugger
-    }
-  </script>
+  <div class="card" style="margin: 10px">
+    <img src="https://pqr.vn/wp-content/uploads/2020/06/villas-la-gi2.jpg"
+         class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Villa</h5>
+      <p class="card-text">Acreage: 200m2</p>
+    </div>
+    <div class="text-center">
+      <a class="btn bg-primary" [routerLink]="['/editFacility']" routerLinkActive="router-link-active">Edit</a>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete
+      </button>
+    </div>
+  </div>
 </div>
-</body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-        crossorigin="anonymous">
-</script>
-</html>
-<app-footer></app-footer>
+
+<div class="card-group">
+  <div class="card" style="margin: 10px">
+    <img
+      src="https://images.squarespace-cdn.com/content/v1/5e0e16044ce9a12790e1596e/1591889572404-XAQT6P9PG96R9ITX7BZR/Custom+Traditional+New+Home+in+Edina27.jpg"
+      class="c   ard-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">House</h5>
+      <p class="card-text">Acreage: 300m2</p>
+    </div>
+    <div class="text-center">
+      <a class="btn bg-primary" [routerLink]="['/editFacility']" routerLinkActive="router-link-active">Edit</a>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete
+      </button>
+    </div>
+  </div>
+  <div class="card" style="margin: 10px">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdfuORfM7DW7Q0JvoIb-8JJ70_VxcxoiNQMg&usqp=CAU"
+         class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Room</h5>
+      <p class="card-text">Acreage: 100m2</p>
+    </div>
+    <div class="text-center">
+      <a class="btn bg-primary" [routerLink]="['/editFacility']" routerLinkActive="router-link-active">Edit</a>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete
+      </button>
+    </div>
+  </div>
+  <div class="card" style="margin: 10px">
+    <img src="https://vinpearlresortvietnam.com/wp-content/uploads/villa-4-phong-ngu-vinpearl-phu-quoc-6.jpg"
+         class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Villa</h5>
+      <p class="card-text">Acreage: 200m2</p>
+    </div>
+    <div class="text-center">
+      <a class="btn bg-primary" [routerLink]="['/editFacility']" routerLinkActive="router-link-active">Edit</a>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete
+      </button>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          do you want to delete facility!!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">no</button>
+          <button type="button" class="btn btn-primary">yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

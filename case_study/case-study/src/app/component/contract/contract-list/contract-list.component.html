@@ -1,4 +1,3 @@
-<app-hearder></app-hearder>
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -24,19 +23,6 @@
 <div class="p-3">
   <h2 class="text-center fw-bold text-light my-3">DANH SÁCH HỢP ĐỒNG</h2>
 
-  <p class="text-center">
-    <a th:href="@{/}"><i class="fa-solid fa-backward"></i> Quay lại trang chủ</a>
-  </p>
-
-  <div th:if="${message}">
-    <div class="justify-content-center d-flex">
-      <div class="alert alert-success alert-dismissible fade show w-50 text-center">
-        <strong th:text="${message}"></strong>
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-      </div>
-    </div>
-  </div>
-
   <nav class="navbar navbar-expand-lg py-0 my-2">
     <div class="container-fluid">
       <button class="btn btn-primary btn-outline-secondary btn-sm" data-bs-toggle="modal"
@@ -47,7 +33,7 @@
     </div>
   </nav>
 
-  <table class="table table-light table-striped table-bordered">
+  <table bgcolor="#5f9ea0" class="table table-light table-striped table-bordered">
     <tr class="table-dark text-light">
       <th class="text-center"><i class="fa-sharp fa-solid fa-bolt"></i></th>
       <th>Tên dịch vụ</th>
@@ -330,5 +316,4 @@
 </script>
 </body>
 </html>
-<app-footer></app-footer>
 
