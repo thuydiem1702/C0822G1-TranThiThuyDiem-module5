@@ -2,11 +2,17 @@
   <div>
     <label for="email">Email</label>
     <input type="email" id="email" name="email" formControlName="email">
+    <!--        <p -->
+    <!--           *ngIf="!contactForm.controls.email?.valid && (contactForm.controls.email?.dirty-->
+    <!--        ||contactForm.controls.email?.touched)">-->
+    <!--          Email is not valid and enter the correct format xxxx@xxx.xxx-->
+    <!--        </p>-->
+
     <p class="text-danger"
-       *ngIf="!contactForm.controls.email?.valid && (contactForm.controls.email?.dirty
-    ||contactForm.controls.email?.touched)">
-      Email is not valid and enter the correct format xxxx@xxx.xxx
-    </p>
+       *ngIf="contactForm.controls.email.hasError('required') && contactForm.controls.email.touched">Email is not
+      valid</p>
+    <p class="text-danger"
+       *ngIf="contactForm.controls.email.hasError('email')">Email correct format xxxx@xxx.xxx</p>
   </div>
 
 
@@ -44,7 +50,7 @@
   </div>
 
   <div>
-    <label for="country">Country </label>
+    <label for="country">Country: </label>
     <select id="country" formControlName="country">
       <option *ngFor="let c of countryList" [ngValue]="c.name">{{c.name}}</option>
     </select>

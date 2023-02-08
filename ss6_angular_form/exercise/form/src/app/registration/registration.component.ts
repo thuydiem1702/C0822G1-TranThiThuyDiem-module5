@@ -37,9 +37,9 @@ export class RegistrationComponent implements OnInit {
     console.log(this.contactForm.value);
   }
 
-  checkPasswords(group: AbstractControl){
+  checkPasswords(group: AbstractControl) {
     let passwordCheck = group.value;
-    if(passwordCheck.password === passwordCheck.confirmPassword){
+    if (passwordCheck.password === passwordCheck.confirmPassword) {
       return null;
     }
     return {'notSame': true};
