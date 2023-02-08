@@ -1,0 +1,20 @@
+<form
+  autocomplete="off"
+  #bookForm="ngForm"
+>
+  <div class="form-group">
+    <label for="bookName">Book Name</label>
+    <input id="bookName" name="name" required minlength="3" [ngModel]="book.name" type="text" class="form-control">
+    <span *ngIf="bookForm.controls.name.dirty && bookForm.controls.name?.errors.required" class="text-danger">Không được để trống</span>
+    <span *ngIf="bookForm.controls.name.touched && bookForm.controls.name?.errors.minlength" class="text-danger">Độ dài phải >=3</span>
+
+    <label for="year">Year</label>
+    <input id="year" name="year" [ngModel]="book.year" type="text" class="form-control">
+
+    <label for="stars">Stars</label>
+    <input id="stars" name="stars" [ngModel]="book.stars" type="text" class="form-control">
+  </div>
+</form>
+<!--<pre>{{ bookForm.value | json }}</pre>-->
+
+
