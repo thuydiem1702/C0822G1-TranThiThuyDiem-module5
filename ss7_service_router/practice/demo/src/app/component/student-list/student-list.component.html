@@ -1,0 +1,35 @@
+<button class="btn btn-info" routerLink="/create">Thêm mới</button>
+<button class="btn btn-info" (click)="changePageToCreate()">Thêm mới</button>
+
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th>Name</th>
+    <th>Date Of Birth</th>
+    <th>Point</th>
+    <th>Rank</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let temp of studentList;index as i">
+    <td>{{i}}}</td>
+    <td>{{temp.name}}</td>
+    <td>{{temp.dateOfBirth}}</td>
+    <td>{{temp.point}}</td>
+    <td *ngIf="temp.point>0 && temp.point<=10;else studentBlock">
+      <p *ngIf="temp>=7 && temp.point<=10 ">Good</p>
+      <p *ngIf="temp<7 && temp.point>10 ">Normal</p>
+    </td>
+    <ng-template #studentBlock>
+      <td>
+        <p>Undefined</p>
+      </td>
+    </ng-template>
+    <td>
+      <button [routerLink]="['/info',temp.id]">Info</button>
+      <button (click)="changePageToInfo(temp.id)">Info</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

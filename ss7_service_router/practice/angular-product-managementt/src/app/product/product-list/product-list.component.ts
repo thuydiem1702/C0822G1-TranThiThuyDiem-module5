@@ -8,7 +8,7 @@ import {Product} from '../../model/product';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-
+  p: Product = {id: 2, name: 'dfsfs'};
   products: Product[] = [];
 
   constructor(private productService: ProductService) {
@@ -20,5 +20,9 @@ export class ProductListComponent implements OnInit {
 
   getAll() {
     return this.products = this.productService.findAll();
+  }
+
+  delete(id: number) {
+    this.productService.deleteProduct(id);
   }
 }
