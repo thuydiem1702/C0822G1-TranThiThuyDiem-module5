@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {ProductService} from "../../service/product.service";
-import {ActivatedRoute, ParamMap, Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Category} from "../../model/category";
 import {Product} from "../../model/product";
 import {CategoryService} from "../../service/catagory.service";
@@ -46,11 +46,11 @@ export class ProductEditComponent implements OnInit {
   editProduct(id: number) {
     const product = this.productForm.value;
     this.productService.editProduct(product).subscribe(next => {
-        alert('Chỉnh sủa thành công');
+        alert('Chỉnh sủa thành công !');
         this.router.navigate(['/product/list']);
       },
       error => {
-        alert('Chỉnh sửa không thành công');
+        alert('Chỉnh sửa không thành công !');
       });
   }
 }

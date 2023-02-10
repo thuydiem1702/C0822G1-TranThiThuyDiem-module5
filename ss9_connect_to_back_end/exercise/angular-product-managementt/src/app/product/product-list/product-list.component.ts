@@ -11,7 +11,7 @@ export class ProductListComponent implements OnInit {
   products: Product[] = [];
   idDelete: number;
   nameDelete: string;
-  temp: Product ={};
+  temp: Product = {};
 
   constructor(private productService: ProductService) {
   }
@@ -25,17 +25,12 @@ export class ProductListComponent implements OnInit {
       this.products = next;
     });
   }
-  //
-  // deleteModal(id: number, name: string) {
-  //   this.idDelete = id;
-  //   this.nameDelete = name;
-  // }
 
   delete(idDelete: number) {
     if (idDelete != null) {
-      return this.productService.deleteProduct(this.temp.id).subscribe(data=>{
+      return this.productService.deleteProduct(this.temp.id).subscribe(data => {
         console.log(data)
-        alert('Xoa thanh cong');
+        alert('Xoá thành công !');
         this.getAll();
       })
     }

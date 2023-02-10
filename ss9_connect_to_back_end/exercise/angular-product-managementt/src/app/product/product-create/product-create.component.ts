@@ -28,16 +28,16 @@ export class ProductCreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.categoryService.getAll().subscribe(next =>{
+    this.categoryService.getAll().subscribe(next => {
       this.category = next;
     });
   }
 
   saveProduct() {
-    if(this.productForm.valid){
+    if (this.productForm.valid) {
       this.productForm.value.id = parseInt(this.productForm.value.id);
       const temp = this.productService.saveProduct(this.productForm.value).subscribe(next => {
-        alert("thêm mới thành công");
+        alert("Thêm mới sản phẩm thành công !");
         this.router.navigateByUrl("product/list")
       })
     }
