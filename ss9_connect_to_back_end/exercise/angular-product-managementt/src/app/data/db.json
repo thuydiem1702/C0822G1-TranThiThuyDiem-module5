@@ -2,19 +2,9 @@
   "products": [
     {
       "id": 1,
-      "name": "Bàn",
+      "name": "qqqq",
       "price": 100,
-      "description": "Tốt",
-      "category": {
-        "id": 1,
-        "name": "C0822g1"
-      }
-    },
-    {
-      "id": 1111,
-      "name": "111",
-      "price": 1111,
-      "description": "1111",
+      "description": "dddd",
       "category": {
         "id": 1,
         "name": "C0822g1"
@@ -36,8 +26,8 @@
       "price": 6,
       "description": "rtfcuyuygyiouiph",
       "category": {
-        "id": 1,
-        "name": "aaa"
+        "id": 2,
+        "name": "C0822g2"
       }
     },
     {
@@ -58,6 +48,16 @@
       "category": {
         "id": 2,
         "name": "C0822g2"
+      }
+    },
+    {
+      "id": 8,
+      "name": "ádesfsrg",
+      "price": 4,
+      "description": "aaa",
+      "category": {
+        "id": 1,
+        "name": "C0822g1"
       }
     }
   ],

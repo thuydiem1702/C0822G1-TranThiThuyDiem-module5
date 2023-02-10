@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {Product} from "../../model/product";
-import {ProductService} from "../../service/product.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
+import {ProductService} from "../../service/product.service";
+import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {Category} from "../../model/category";
+import {Product} from "../../model/product";
 import {CategoryService} from "../../service/catagory.service";
 
 @Component({
@@ -18,33 +18,39 @@ export class ProductEditComponent implements OnInit {
     price: new FormControl(),
     description: new FormControl(),
     category: new FormControl(),
-  })
-  product:Product={};
-  categorys:Category[]=[];
-  constructor(private productService:ProductService,private categoryService:CategoryService,private activatedRoute:ActivatedRoute,private router:Router) {
-    this.activatedRoute.paramMap.subscribe(data=>{
-      const id=data.get('id');
-      if (id!=null){
-        this.productService.findById(parseInt(id)).subscribe(data=>{
-          this.product=data;
-          this.productForm.patchValue(this.product);
-        });
+  });
+  id: number;
+  product: Product;
+  category: Category[] = [];
+
+  constructor(private productService: ProductService,
+              private  activatedRoute: ActivatedRoute,
+              private router: Router,
+              private categoryService: CategoryService) {
+    this.activatedRoute.paramMap.subscribe(data => {
+      const id = data.get('id');
+      if (id != null) {
+        productService.findById(parseInt(id)).subscribe(next => {
+          this.productForm.patchValue(next);
+        })
       }
+    })
+    categoryService.getAll().subscribe(data => {
+      this.category = data;
     })
   }
 
   ngOnInit(): void {
-    this.categoryService.getAll().subscribe(data=>{
-      this.categorys=data;
-    })
   }
 
-  updateProduct() {
-    this.product=this.productForm.value;
-    console.log(this.product);
-  }
-
-  compareWith(o1: Category, o2: Category): boolean {
-    return o1 && o2 ? o1.id === o2.id : o1 === o2;
+  editProduct(id: number) {
+    const product = this.productForm.value;
+    this.productService.editProduct(product).subscribe(next => {
+        alert('Chỉnh sủa thành công');
+        this.router.navigate(['/product/list']);
+      },
+      error => {
+        alert('Chỉnh sửa không thành công');
+      });
   }
 }
