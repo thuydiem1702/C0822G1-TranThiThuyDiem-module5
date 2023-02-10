@@ -1,0 +1,74 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Bàn",
+      "price": 100,
+      "description": "Tốt",
+      "category": {
+        "id": 1,
+        "name": "C0822g1"
+      }
+    },
+    {
+      "id": 1111,
+      "name": "111",
+      "price": 1111,
+      "description": "1111",
+      "category": {
+        "id": 1,
+        "name": "C0822g1"
+      }
+    },
+    {
+      "id": 5,
+      "name": "fhfgj",
+      "price": 16,
+      "description": "rytuifffffff",
+      "category": {
+        "id": 2,
+        "name": "C0822g2"
+      }
+    },
+    {
+      "id": 7,
+      "name": "zsdtry",
+      "price": 6,
+      "description": "rtfcuyuygyiouiph",
+      "category": {
+        "id": 1,
+        "name": "aaa"
+      }
+    },
+    {
+      "id": 12,
+      "name": "dfffffff",
+      "price": 15,
+      "description": "ddddd",
+      "category": {
+        "id": 1,
+        "name": "C0822g1"
+      }
+    },
+    {
+      "id": 4,
+      "name": "dđ",
+      "price": 111,
+      "description": "ddd",
+      "category": {
+        "id": 2,
+        "name": "C0822g2"
+      }
+    }
+  ],
+  "categorys": [
+    {
+      "id": 1,
+      "name": "C0822g1"
+    },
+    {
+      "id": 2,
+      "name": "C0822g2"
+    }
+  ]
+}
