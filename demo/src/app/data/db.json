@@ -1,0 +1,94 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "abc",
+      "price": 123,
+      "description": "aa3",
+      "category": {
+        "id": 1,
+        "name": "a"
+      }
+    },
+    {
+      "id": 2,
+      "name": "cde",
+      "price": 345,
+      "description": "a",
+      "category": {
+        "id": 2,
+        "name": "b"
+      }
+    },
+    {
+      "id": 3,
+      "name": "sssss",
+      "price": 4,
+      "description": "cccxxx",
+      "category": {
+        "id": 1,
+        "name": "a"
+      }
+    },
+    {
+      "id": 15,
+      "name": "aa",
+      "price": 111111,
+      "description": "aaaaaaaaaa",
+      "category": {
+        "id": 1,
+        "name": "a"
+      }
+    },
+    {
+      "id": 4,
+      "name": "d",
+      "price": 1,
+      "description": "q",
+      "category": {
+        "id": 1,
+        "name": "a"
+      }
+    },
+    {
+      "id": 12,
+      "name": "aaa",
+      "price": 1212121,
+      "description": "xcsd",
+      "category": {
+        "id": 1,
+        "name": "a"
+      }
+    },
+    {
+      "id": 5,
+      "name": "gfff",
+      "price": 4,
+      "description": "tft",
+      "category": {
+        "id": 1,
+        "name": "a"
+      }
+    },
+    {
+      "id": 8,
+      "name": "nnn",
+      "price": 99,
+      "description": "an",
+      "category": {
+        "id": 1,
+        "name": "a"
+      }
+    }
+  ],
+  "categorys": [
+    {
+      "id": 1,
+      "name": "a"
+    },
+    {
+      "id": 2,
+      "name": "b"
+    }
+  ]
+}

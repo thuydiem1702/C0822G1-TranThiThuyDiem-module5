@@ -1,0 +1,10 @@
+<form [formGroup]="productForm" (ngSubmit)="infoProduct(id)">
+
+<div *ngIf="product, else block">
+  Id: <p>{{product.id}}</p>
+  Name: <p>{{product.name}}</p>
+  Price: <p>{{product.price}}</p>
+</div>
+<ng-template #block>Không tìm thấy sản phẩm</ng-template>
+
+</form>

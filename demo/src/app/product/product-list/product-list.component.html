@@ -1,0 +1,57 @@
+<h1>DANH SACH SAN PHAM</h1>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <td>STT</td>
+    <td>TEN</td>
+    <td>GIA</td>
+    <td>MO TA</td>
+    <td>THE LOAI</td>
+    <td>SUA</td>
+    <td>XOA</td>
+    <td>INFO</td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let product of products | paginate: { itemsPerPage: 2, currentPage: page};index as i">
+    <td>{{i + 1}}</td>
+    <td>{{product.name}}</td>
+    <td>{{product.price}}</td>
+    <td>{{product.description}}</td>
+    <td>{{product.category?.name}}</td>
+    <td><a class="btn btn-primary" [routerLink]="['/product/edit',product.id]">Edit</a></td>
+    <td>
+      <button type="button" class="btn btn-primary" style="background: red" (click)="temp = product"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal">
+        Delete
+      </button>
+    </td>
+    <td>
+      <button [routerLink]="['/info', temp.id]">Info</button>
+
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div class="has-text-centered">
+  <pagination-controls (pageChange)="page = $event"></pagination-controls>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <span>Bạn có muốn xóa sản phẩm </span><span style="color: red">{{temp.name}}</span><span> này không ?</span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" (click)="delete(temp.id)" data-bs-dismiss="modal" class="btn btn-primary">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

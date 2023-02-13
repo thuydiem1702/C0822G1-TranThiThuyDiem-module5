@@ -1,138 +1,81 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
-<head>
-  <meta charset="UTF-8">
-  ​
-  <title>ADD NEW CUSTOMER</title>
-  ​
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
-  ​
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      background-image: url("https://resizing.flixster.com/XHvcBxuKMfWLooKZHqPrCusyz9Q=/ems.cHJkLWVtcy1hc3NldHMvbW92aWVzL2EyZDU1MDQyLWQ0MTMtNGJmOC04Y2QxLTE3ODFhYmJiMGM0Ny53ZWJw");
-    }
-  </style>
-  ​
-</head>
-<body>
-​
-<div class="mx-5 px-5 pt-3">
-  <h2 class="text-center fw-bold text-light">ADD NEW CUSTOMER</h2>
-  ​
-  ​
-  <div class="d-flex justify-content-center">
-    <form class="w-50 border border-2 border-success p-3 rounded formCSS" th:action="@{/customer/add}"
-          th:object="${customerDto}" method="POST" novalidate="novalidate">
-      <div class="form-group">
-        <label for="name" class="h6">Tên khách hàng:</label>
-        <p style="color: red" th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}"></p>
-        <div class="input-group">
-          <input type="text" id="name" class="form-control" placeholder="Nhập tên khách hàng.."
-                 th:field="*{customerName}"/>
-          <span class="input-group-text"><i class="fa-solid fa-person-circle-question"></i></span>
-        </div>
+<h1 style="margin-left: 40%; margin-top: 50px">ADD NEW CUSTOMER</h1>
+
+<form class="form" [formGroup]="formCreate" (ngSubmit)="create()" style="text-align: center">
+  <div style="margin-right: 500px; margin-left: 500px; color: white">
+    <div>
+      <label class="form-label animationTop delay-03">Customer Name:</label><br>
+      <span class="chutieude"
+            *ngIf="formCreate.controls.name.hasError('required')&& formCreate.controls.name.touched">Cannot be left blank !</span>
+      <span class="chutieude" *ngIf="formCreate.controls.name.hasError('pattern')&& formCreate.controls.name.touched">The name is not in the correct format !</span>
+      <input class="form-control animationTop delay-04" type="text" placeholder="Customer Name"
+             formControlName="name"/>
+    </div>
+
+    <div>
+      <label class="form-label animationTop delay-05"> Day Of Birth :</label><br>
+      <span class="chutieude"
+            *ngIf="formCreate.controls.dayOfBirth.hasError('invalid')&& formCreate.controls.dayOfBirth.touched">You are not 18+</span>
+      <input class="form-control animationTop delay-06" type="date" placeholder="Date Of Birth"
+             formControlName="dayOfBirth"/>
+      <div>
+        <label class="form-label animationTop delay-07">Gender :</label><br>
+        <select style="font-size: 15px; text-align: center" class="animationTop delay-08" formControlName="gender">
+          <option value="">Gender:</option>
+          <option value="1">Male</option>
+          <option value="0">Female</option>
+          <option value="2">Other</option>
+        </select>
       </div>
-      ​
-      <div class="mt-3 form-group">
-        <label for="dateOfBirth" class="h6">Ngày sinh:</label>
-        <p style="color: red" th:if="${#fields.hasErrors('customerBirthday')}"
-           th:errors="*{customerBirthday}"></p>
-        <input type="date" id="dateOfBirth" class="form-control" th:field="*{customerBirthday}"/>
+
+      <div>
+        <label class="form-label animationTop delay-08">ID Card :</label><br>
+        <span class="chutieude"
+              *ngIf="formCreate.controls.idCard.hasError('required') && formCreate.controls.idCard.touched">Cannot be left blank !</span>
+        <span class="chutieude"
+              *ngIf="formCreate.controls.idCard.hasError('pattern') && formCreate.controls.idCard.touched">Not in the correct format !</span>
+        <input class="form-control animationTop delay-09" type="text" placeholder="ID Card" formControlName="idCard"/>
       </div>
-      ​
-      <div class="mt-3 form-group">
-        <label class="h6">Giới tính:</label>
-        <p style="color: red" th:if="${#fields.hasErrors('customerGender')}"
-           th:errors="*{customerGender}"></p>
-        <div class="d-flex">
-          <label class="d-block me-4">
-            <input type="radio" th:field="*{customerGender}" th:value="0"/> Nữ
-            <i class="fa-solid fa-mars"></i>
-          </label>
-          ​
-          <label class="d-block me-4">
-            <input type="radio" th:field="*{customerGender}" th:value="1"/> Nam
-            <i class="fa-solid fa-venus"></i>
-          </label>
-          ​
-          <label class="d-block">
-            <input type="radio" th:field="*{customerGender}" th:value="2"/> LGBT
-            <i class="fa-solid fa-heart"></i>
-          </label>
-        </div>
+
+      <div>
+        <label class="form-label animationTop delay-11">Phone Number :</label><br>
+        <span class="chutieude"
+              *ngIf="formCreate.controls.phoneNumber.hasError('required') && formCreate.controls.phoneNumber.touched">Cannot be left blank !</span>
+        <span class="chutieude"
+              *ngIf="formCreate.controls.phoneNumber.hasError('pattern') && formCreate.controls.phoneNumber.touched">Not in the correct format !</span>
+        <input class="form-control animationTop delay-12" type="text" placeholder="Phone Number"
+               formControlName="phoneNumber"/>
       </div>
-      ​
-      <div class="mt-3 form-group">
-        <label for="idCard" class="h6">Số CMND/CCCD:</label>
-        <p style="color: red" th:if="${#fields.hasErrors('customerIdCard')}"
-           th:errors="*{customerIdCard}"></p>
-        <div class="input-group">
-          <input type="text" id="idCard" class="form-control" placeholder="Nhập số CMND/CCCD.."
-                 th:field="*{customerIdCard}"/>
-          <span class="input-group-text"><i class="fa-solid fa-id-card"></i></span>
-        </div>
+
+      <div>
+        <label class="form-label animationTop delay-13">Email :</label><br>
+        <span class="chutieude"
+              *ngIf="formCreate.controls.email.hasError('required') && formCreate.controls.email.touched">Cannot be left blank !</span>
+        <span class="chutieude"
+              *ngIf="formCreate.controls.email.hasError('pattern') && formCreate.controls.email.touched">Not in the correct format !</span>
+        <input class="form-control animationTop delay-14" type="text" placeholder="Email" formControlName="email"/>
       </div>
-      ​
-      <div class="mt-3 form-group">
-        <label for="phone" class="h6">Số điện thoại:</label>
-        <p style="color: red" th:if="${#fields.hasErrors('customerPhone')}"
-           th:errors="*{customerPhone}"></p>
-        <div class="input-group">
-          <input type="text" id="phone" class="form-control" placeholder="Nhập SĐT.."
-                 th:field="*{customerPhone}"/>
-          <span class="input-group-text"><i class="fa-solid fa-square-phone"></i></span>
-        </div>
+
+      <div>
+        <label class="form-label animationTop delay-15">Address :</label><br>
+        <span class="chutieude"
+              *ngIf="formCreate.controls.address.hasError('required') && formCreate.controls.address.touched">Cannot be left blank !</span>
+        <span class="chutieude"
+              *ngIf="formCreate.controls.address.hasError('maxlength') && formCreate.controls.address.touched">Address is too long</span>
+        <input class="form-control animationTop delay-16" type="text" placeholder="Address"
+               formControlName="address"/>
       </div>
-      ​
-      <div class="mt-3 form-group">
-        <label for="email" class="h6">Email:</label>
-        <p style="color: red" th:if="${#fields.hasErrors('customerEmail')}"
-           th:errors="*{customerEmail}"></p>
-        <div class="input-group">
-          <input type="text" id="email" class="form-control" placeholder="Nhập email.."
-                 th:field="*{customerEmail}"/>
-          <span class="input-group-text"><i class="fa-solid fa-envelope-circle-check"></i></span>
-        </div>
+
+      <div>
+        <label class="form-label animationTop delay-17">Customer Type :</label><br>
+        <select style="font-size: 15px;" class="animationTop delay-18" formControlName="customerType">
+          <option value="">Customer type :</option>
+          <option *ngFor="let item of customerType" [ngValue]="item">{{item.name}}</option>
+        </select>
       </div>
-      ​
-      <div class="mt-3 form-group">
-        <label for="address" class="h6">Địa chỉ:</label>
-        <p style="color: red" th:if="${#fields.hasErrors('customerAddress')}"
-           th:errors="*{customerAddress}"></p>
-        <div class="input-group">
-          <input type="text" id="address" class="form-control" placeholder="Nhập địa chỉ.."
-                 th:field="*{customerAddress}"/>
-          <span class="input-group-text"><i class="fa-solid fa-map-location-dot"></i></span>
-        </div>
-      </div>
-      ​
-      <div class="mt-3 form-group">
-        <label class="h6" for="customerType">Loại khách:</label>
-        <div class="input-group">
-          <select id="customerType" class="form-select" th:field="*{customerType.customerTypeId}">
-            <option th:each="item : ${customerTypeList}" th:value="${item.customerTypeId}"
-                    th:text="${item.customerTypeName}"></option>
-          </select>
-          <span class="input-group-text"><i class="fa-solid fa-ranking-star"></i></span>
-        </div>
-      </div>
-      ​
-      <div class="mt-3 text-center">
-        <button class="btn btn-info btn-outline-success btn-sm border border-2 border-success text-dark">
-          -- Save <i class="fa-solid fa-floppy-disk"></i> --
-        </button>
-      </div>
-    </form>
+
+    </div>
+    <div style="text-align: center">
+      <input type="submit" value="Save" class="m-3 btn btn-info animationTop delay-19"></div>
   </div>
-</div>
-​
-</body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-        crossorigin="anonymous"></script>
-</html>
+</form>
+

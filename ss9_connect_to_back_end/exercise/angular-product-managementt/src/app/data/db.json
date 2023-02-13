@@ -12,12 +12,12 @@
     },
     {
       "id": 7,
-      "name": "zsdtry",
+      "name": "zsdtryQQ",
       "price": 6,
-      "description": "rtfcuyuygyiouiph",
+      "description": "Q",
       "category": {
-        "id": 2,
-        "name": "C0822g2"
+        "id": 1,
+        "name": "C0822g1"
       }
     },
     {
@@ -48,16 +48,6 @@
       "category": {
         "id": 1,
         "name": "C0822g1"
-      }
-    },
-    {
-      "id": 17,
-      "name": "abcd",
-      "price": 5,
-      "description": "aaaa",
-      "category": {
-        "id": 2,
-        "name": "C0822g2"
       }
     }
   ],

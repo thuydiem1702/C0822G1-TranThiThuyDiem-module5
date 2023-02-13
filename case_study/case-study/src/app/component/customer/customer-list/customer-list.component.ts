@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import {Customer} from '../../../model/customer';
-import {CustomerType} from '../../../model/customer-type';
+import {CustomerService} from '../../../service/customer.service';
 
 @Component({
   selector: 'app-customer-list',
@@ -8,25 +9,39 @@ import {CustomerType} from '../../../model/customer-type';
   styleUrls: ['./customer-list.component.css']
 })
 export class CustomerListComponent implements OnInit {
-  customerList: Customer[] = [
-    {
-      id: 1,
-      name: 'NVA',
-      dateOfBirth: '11 / 11 / 2000',
-      gender: 1,
-      idCard: '121212122',
-      phoneNumber: '111111111',
-      email: 'aaaa',
-      address: 'ádfgsfgsg',
-      customerType: {id: 1, name: 'vfxgfcg'},
-      status: '1',
-    }
-  ];
+  customer: Customer[] = [];
+  temp: Customer = {};
+  p = 0;
 
-  constructor() {
+  constructor(private customerService: CustomerService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
+    this.getAllCustomer();
   }
 
+  getAllCustomer() {
+    this.customerService.getAll().subscribe(data => {
+      this.customer = data;
+    });
+  }
+
+  deleteCustomer(): void {
+    this.customerService.delete(this.temp.id).subscribe(data => {
+      alert('Deleted');
+      this.router.navigateByUrl('/customer/list');
+      this.ngOnInit();
+    }, error1 => {
+
+    }, () => {
+
+    });
+  }
+
+  search(value: string, value2: string) {
+    this.customerService.search(value, value2).subscribe(data => {
+      this.customer = data;
+    });
+  }
 }
