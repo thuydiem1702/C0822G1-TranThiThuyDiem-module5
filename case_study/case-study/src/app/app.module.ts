@@ -17,6 +17,7 @@ import {ContractListComponent} from './component/contract/contract-list/contract
 import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,6 @@ import {NgxPaginationModule} from 'ngx-pagination';
     FacilityEditComponent,
     FacilityCreateComponent,
     CustomerListComponent,
-    CustomerListComponent,
     CustomerEditComponent,
     CustomerCreateComponent,
     ContractCreateComponent,
@@ -39,8 +39,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgxPaginationModule
-  ],
+    NgxPaginationModule,
+    FormsModule
+],
   providers: [],
   bootstrap: [AppComponent]
 })

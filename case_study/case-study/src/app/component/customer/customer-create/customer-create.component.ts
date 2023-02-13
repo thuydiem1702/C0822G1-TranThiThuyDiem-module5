@@ -49,10 +49,10 @@ export class CustomerCreateComponent implements OnInit {
     if (this.formCreate.valid) {
       this.customerService.save(customer).subscribe(() => {
         this.router.navigateByUrl('/customer/list');
-        alert('Created');
+        alert('Them moi thanh cong !');
       });
     } else {
-      alert('Please check the information again');
+      alert('Them moi khong thanh cong');
     }
 
   }

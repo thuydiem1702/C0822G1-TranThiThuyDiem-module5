@@ -15,10 +15,10 @@ export class CustomerListComponent implements OnInit {
 
   constructor(private customerService: CustomerService,
               private router: Router) {
+    this.getAllCustomer();
   }
 
   ngOnInit(): void {
-    this.getAllCustomer();
   }
 
   getAllCustomer() {

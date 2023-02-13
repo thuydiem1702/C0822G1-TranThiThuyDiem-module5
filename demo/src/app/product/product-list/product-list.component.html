@@ -1,4 +1,11 @@
 <h1>DANH SACH SAN PHAM</h1>
+<div class="d-flex justify-content-between">
+  <input class="form-control me-2" type="search" #nameSearch placeholder="Search" aria-label="Search">
+  <select class="form-select" #abc>
+    <option *ngFor="let item of categories" [ngValue]="item">{{item.name}}</option>
+  </select>
+  <button class="btn btn-outline-success" (click)="search(nameSearch.value,abc.value)" type="submit">Search</button>
+</div>
 <table class="table table-striped">
   <thead>
   <tr>

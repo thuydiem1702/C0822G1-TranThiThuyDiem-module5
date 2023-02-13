@@ -5,7 +5,7 @@
     </button>
   </a>
   <div>
-    <form class="d-flex animationTop delay-02" role="search"  style="float: left; font-size: 17px; margin-top: 57px">
+    <form class="d-flex animationTop delay-02" role="search" style="float: left; font-size: 17px; margin-top: 57px">
       <input class="form-control me-2" name="names" type="search" placeholder="Search name" aria-label="Search" #name>
       <select class="form-select animationTop delay-03" aria-label="Default select example" name="customer_type"
               style="padding-right: 10px" #customerType>
@@ -16,7 +16,9 @@
         <option value="Silver">Silver</option>
         <option value="Member">Member</option>
       </select>
-      <button style="margin-left: 10px" class="btn btn-primary animationTop delay-04" type="submit" (click)="search(name.value, customerType.value)">Search</button>
+      <button style="margin-left: 10px" class="btn btn-primary animationTop delay-04" type="submit"
+              (click)="search(name.value, customerType.value)">Search
+      </button>
     </form>
   </div>
   <h1 style="margin-left: 45%; margin-top: 53px">CUSTOMER</h1>
@@ -32,12 +34,13 @@
       <th>Email</th>
       <th>Address</th>
       <th>Customer Type</th>
-      <th>Update</th>
+      <th>Edit</th>
       <th>Delete</th>
     </tr>
     </thead>
     <tbody>
-    <tr style="text-align: center" *ngFor="let item of customer |paginate:{itemsPerPage: 5, currentPage: p}" class="animationTop delay-06">
+    <tr style="text-align: center" *ngFor="let item of customer |paginate:{itemsPerPage: 5, currentPage: p}"
+        class="animationTop delay-06">
       <td class="animationTop delay-07">{{item.id}}</td>
       <td class="animationTop delay-07">{{item.name}}</td>
       <td class="animationTop delay-07">{{item.dayOfBirth}}</td>
@@ -52,7 +55,8 @@
 
 
       <td>
-        <a [routerLink]="['/customer/update/', item.id]" class="btn btn-warning animationTop delay-08" style="font-size: 14px">Update</a>
+        <a [routerLink]="['/customer/edit/', item.id]" class="btn btn-warning animationTop delay-08"
+           style="font-size: 14px">Edit</a>
       </td>
       <td>
         <a class="btn btn-danger animationTop delay-09" type="button"
@@ -63,12 +67,12 @@
   </table>
   <div class="snow"></div>
   <pagination-controls (pageChange)="p=$event"></pagination-controls>
-
 </div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content" style="background-image: linear-gradient(to top,  #B5B5B5, #B5B5B5,#8273B0); overflow:hidden;">
+    <div class="modal-content"
+         style="background-image: linear-gradient(to top,  #B5B5B5, #B5B5B5,#8273B0); overflow:hidden;">
       <div class="modal-header">
         <h2 class="modal-title fs-5" id="exampleModalLabel">Xóa thông tin sản phẩm</h2>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

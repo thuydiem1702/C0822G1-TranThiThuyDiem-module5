@@ -1,4 +1,4 @@
-export interface RentType {
+export interface FacilityType {
   id?: number;
   name?: string;
 }
